@@ -3,10 +3,14 @@ import { LinearGradient } from "expo-linear-gradient";
 //for chaning the color of time and wifi
 import { StatusBar } from "expo-status-bar";
 import React from "react";
+//@ts-ignore
 import beachImage from "@/assets/meditation-images/beach.webp";
 import CustomButton from "@/components/CustomButton";
+import { useRouter } from "expo-router";
+import AppGradient from "@/components/AppGradient";
 
 const App = () => {
+  const router = useRouter();
   return (
     <View className="flex-1 ">
       <ImageBackground
@@ -14,12 +18,9 @@ const App = () => {
         source={beachImage}
         resizeMode="cover"
       >
-        <LinearGradient
-          style={{ flex: 1 }}
-          colors={["rgba(0,0,0,0.4)", "transparent"]}
-        >
-          <SafeAreaView className="flex-1 justify-between mx-5 my-8">
-            <View className="  ">
+        <AppGradient colors={["rgba(0,0,0,0.4)", "transparent"]}>
+          <View className="flex-1 justify-between px-1 ">
+            <View className="">
               <Text className=" text-center font-bold text-4xl">
                 Simple Meditation
               </Text>
@@ -30,12 +31,11 @@ const App = () => {
             <View>
               <CustomButton
                 title="Get Started"
-                onPress={() => console.log("tap")}
+                onPress={() => router.push("/nature-meditate")}
               />
             </View>
-            <StatusBar style="light" />
-          </SafeAreaView>
-        </LinearGradient>
+          </View>
+        </AppGradient>
       </ImageBackground>
     </View>
   );
